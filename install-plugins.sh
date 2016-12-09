@@ -68,11 +68,6 @@ doDownload() {
 
     url="$JENKINS_UC_DOWNLOAD/plugins/$plugin/$version/${plugin}.hpi"
 
-    # hack to get this script to look for sonar-2.4.4 in the right place
-    if [[ ${plugin} == "sonar" ]]; then
-     url="http://updates.jenkins-ci.org/download/plugins/sonar/2.4.4/sonar.hpi"
-    fi
-
     echo "Downloading plugin: $plugin from $url"
     curl --connect-timeout ${CURL_CONNECTION_TIMEOUT:-20} --retry ${CURL_RETRY:-5} --retry-delay ${CURL_RETRY_DELAY:-0} --retry-max-time ${CURL_RETRY_MAX_TIME:-60} -s -f -L "$url" -o "$jpi"
     return $?
